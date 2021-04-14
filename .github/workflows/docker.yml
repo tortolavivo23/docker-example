@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
+      - uses: actions/checkout@v2
       - name: Login to DockerHub
         uses: docker/login-action@v1 
         with:
@@ -42,4 +43,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          context: .
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/items:latest
