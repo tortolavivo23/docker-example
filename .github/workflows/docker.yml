@@ -24,6 +24,7 @@ jobs:
     - name: Upload Dockerfile for next job
       uses: actions/upload-artifact@v1
       with:
+        name: Dockerfile
         path: Dockerfile
 
   publish_in_dockerhub:
@@ -46,9 +47,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Log
         run: ls -l
+      - name: Log 2
+        run: cat Dockerfile
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/items:latest
