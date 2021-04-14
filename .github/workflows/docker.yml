@@ -30,6 +30,7 @@ jobs:
   publish_in_dockerhub:
     name: Publish in DockerHub
     runs-on: ubuntu-latest
+    needs: [build]
     steps:
       - name: Download Jar from previous job
         uses: actions/download-artifact@v1
