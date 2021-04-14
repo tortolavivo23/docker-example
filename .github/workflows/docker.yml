@@ -24,7 +24,6 @@ jobs:
     - name: Upload Dockerfile for next job
       uses: actions/upload-artifact@v1
       with:
-        name: docker-file
         path: Dockerfile
 
   publish_in_dockerhub:
@@ -39,7 +38,7 @@ jobs:
       - name: Download Dockerfile from previous job
         uses: actions/download-artifact@v1
         with:
-          name: docker-file
+          name: Dockerfile
       - name: Login to DockerHub
         uses: docker/login-action@v1 
         with:
