@@ -1,0 +1,51 @@
+name: Master CICD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build Java application
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Build native with Maven
+      run: mvn -B package
+    - name: Upload jar for next job
+      uses: actions/upload-artifact@v1
+      with:
+        name: target
+        path: target
+    - name: Upload Dockerfile for next job
+      uses: actions/upload-artifact@v1
+      with:
+        name: docker-file
+        path: Dockerfile
+
+  publish_in_dockerhub:
+    name: Publish in DockerHub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Jar from previous job
+        uses: actions/download-artifact@v1
+        with:
+          name: target
+      - name: Download Dockerfile from previous job
+        uses: actions/download-artifact@v1
+        with:
+          name: docker-file
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/items:latest
