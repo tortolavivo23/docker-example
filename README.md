@@ -22,7 +22,7 @@ Para lanzar la aplicación el local:
 
 ```
     docker login
-    docker build -t <my_user>/items:v1
+    docker build -t <my_user>/items:v1 .
     docker push <my_user>/items:v1
 ```
 
