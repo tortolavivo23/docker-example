@@ -26,7 +26,7 @@ Para lanzar la aplicación el local:
     docker push <my_user>/items:v1
 ```
 
-## Lanzamos la imagen en local
+## Lanzamos la imagen CAMBIO
 
 ```
     docker run -p 8080:8080 <my_user>/items:v1
