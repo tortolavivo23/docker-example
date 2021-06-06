@@ -3,6 +3,8 @@ name: Master CICD
 on:
   push:
     branches: [ main ]
+  
+  workflow_dispatch:
 
 jobs:
   build:
