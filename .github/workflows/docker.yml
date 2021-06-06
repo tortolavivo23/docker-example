@@ -26,7 +26,7 @@ jobs:
 
   publish_in_dockerhub:
     name: Publish in DockerHub
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: [build]
     steps:
       - name: Clone repository
