@@ -21,7 +21,7 @@ jobs:
         run: echo ::set-output name=tag::$(mvn -q help:evaluate -Dexpression=project.version -DforceStdout)
         id: project
       
-      - name: Generate date
+      - name: Generate tag
         run: echo ::set-output name=value::$(date +'%Y%m%d.%H%M%S')
         id: timestamp
         
