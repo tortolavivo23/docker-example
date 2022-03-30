@@ -22,7 +22,7 @@ jobs:
         id: project
       
       - name: Generate tag
-        run: echo ::set-output name=value::$(date +'%Y%m%d.%H%M%S')
+        run: echo ::set-output name=date::$(date +'%Y%m%d.%H%M%S')
         id: timestamp
         
       - name: Generate Docker image
